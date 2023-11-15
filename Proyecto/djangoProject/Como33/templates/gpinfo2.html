@@ -1,0 +1,37 @@
+{%extends 'basic.html' %}
+
+{%block body%}
+{% if errMsg %}
+    <h1 style="color: red; "><b>ERROR: {{ errMsg }} </b></h1>
+    <br>
+    <form action="{% url 'gpinfo' %}" method="get" style="text-align: center">
+        <button style="color: black; background-color: rgb(184, 184, 184); border-radius:35px; border-width: 3px; padding-left:5px; padding-right:5px" type="submit">GO BACK!</button>
+    </form>
+    <br>
+    <br>
+    <div style="text-align: center;">
+    <img src="/static/media/MV.gif" width="900" height="600">
+    </div>
+{% else %}
+<h1 style="text-align: center;">GP INFO</h1>
+<form method="POST">
+    {% csrf_token %}
+    <button style="color: black; background-color: #FF1801; border-radius:35px; border-width: 3px; padding-left:5px; padding-right:5px" type="submit"><b>Select other Year</b></button>
+</form>
+<br>
+<div> 
+    <form method="POST" style="text-align: center;">
+        {% csrf_token %}
+        <select name="gptag" id="gptag" required>
+            <option selected value="" disabled>Selecciona un Gran Premio</option>
+            {% for gp in gptag %}
+                <option value="{{ gp }}">{{ gp }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <br>
+        <button>Buscar</button>
+    </form>
+</div>
+{% endif %}
+{% endblock body %}

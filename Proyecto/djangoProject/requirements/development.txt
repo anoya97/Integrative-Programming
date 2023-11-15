@@ -1,0 +1,5 @@
+ptvsd
+pylint
+pylint-django
+coverage
+coveralls

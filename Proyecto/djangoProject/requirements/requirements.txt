@@ -1,0 +1,12 @@
+Django==4
+django-crispy-forms
+oauth2
+Pillow
+psycopg2
+fastf1
+matplotlib
+pendulum
+pandas
+wikipedia-api
+google-api-python-client
+requests

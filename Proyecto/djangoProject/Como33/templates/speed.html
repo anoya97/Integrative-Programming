@@ -1,0 +1,38 @@
+{%extends 'basic.html' %}
+
+{%block body%}
+{% if errMsg %}
+    <h1 style="color: red; "><b>ERROR: {{ errMsg }} </b></h1>
+    <br>
+    <form action="{% url 'speed' %}" method="get" style="text-align: center">
+        <button style="color: black; background-color: rgb(184, 184, 184); border-radius:35px; border-width: 3px; padding-left:5px; padding-right:5px" type="submit">GO BACK!</button>
+    </form>
+    <br>
+    <br>
+    <div style="text-align: center;">
+    <img src="/static/media/MV.gif" width="900" height="600">
+    </div>
+{% else %}
+
+<h1 style="text-align: center;">FASTEST LAP</h1>
+<br>
+<div> 
+    <form method="POST" class="form" style="text-align: center;">
+        {% csrf_token %}    
+        <select name="spe_year" id="spe_year" required>
+            <option selected value="" disabled>Select year</option>
+            {% for year in spe_year %}
+                <option value="{{ year }}">{{ year }}</option>
+            {% endfor %}
+        </select> 
+        <br>   
+        <br>
+        <input id="boton" type="submit" value="Submit">
+        <br>
+        <br>
+        <br>
+    </form>
+</div>
+{% endif %}
+ 
+{%endblock body%} 

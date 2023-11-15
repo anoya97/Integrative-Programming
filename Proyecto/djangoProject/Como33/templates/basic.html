@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% load static %}
+  <head>
+    <title>Bootstrap Example</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css'%}" rel="stylesheet">
+    <link href="{% static 'css/1-col-portfolio.css'%}" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <!-- Navigation -->
+    
+    <nav class="navbar navbar-inverse">   
+      <ul class="nav navbar-nav">
+        <li><label for="" class="brand">
+          <a href="#">
+            <img src="/static/media/logo.png">
+          </a> 
+        </label></li>
+        <li><a href="{% url 'profile'%}">Profile</a></li>
+        <li><a href="{% url 'classification'%}">Classification</a></li>
+        <li><a href="{% url 'calendar' %}">Calendar</a></li>
+        <li><a href="{% url 'driver' %}">Driver</a></li>
+        <li><a href="{% url 'gpinfo' %}">GP Info</a></li>
+        <li><a href="{% url 'speed'%}">Speed</a></li>
+        <li><a href="{% url 'comparation'%}">Comparation</a></li>
+        <li><a href="{% url 'about'%}#">About CQ33</a></li>
+      </ul>
+    </nav>
+
+    <div class="container">
+     {%block body%}{%endblock%}
+    </div>
+     
+  </body>
+
+  <footer class="py-5 bg-primary bottom">
+    <h5> © Webpage designed by: Armando Noya, Raúl Fernández and Brais González (2023-2024)</h5>
+  </footer> 
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% load static %}
+  <head>
+    <title>Bootstrap Example</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css'%}" rel="stylesheet">
+    <link href="{% static 'css/1-col-portfolio.css'%}" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  </head>
+  <body style="background-color: rgba(0, 51, 20, 0.349);">
+    <h1><b>¿COMO QUE 33?</b><h1>
+    <h1></h1>
+    <br>
+    <form class="form" method="post" style="text-align: center;">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit" id="submit">Login</button>
+    </form>
+    <br>
+    <br>
+    <div>
+    <h4 style="text-align: center;"><b>NOT REGISTERED YET?</b></h4> <form action="{% url 'register' %}" method="get" style="text-align: center;">
+    <button style="color: black; background-color: rgb(184, 184, 184); border-radius:35px; border-width: 3px; padding-left:5px; padding-right:5px" type="submit">Sign up</button>
+    <br>
+    <br>
+    <img src="/static/media/Register.gif">
+    <br> 
+    </form>
+  </div>
+  </body>
+  <footer class="py-5 bg-primary bottom">
+    <h5> © Webpage designed by: Armando Noya, Raúl Fernández and Brais González (2023-2024)</h5>
+  </footer> 
+</html> 

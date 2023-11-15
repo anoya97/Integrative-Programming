@@ -1,0 +1,23 @@
+{%extends 'basic.html' %}
+
+{%block body%}
+
+<h1 style="text-align: center;">ACTUAL CALENDAR</h1>
+<br>
+<div> 
+    <form method="POST" style="text-align: center;">
+    </form>
+    <br>
+    <br> 
+    <div>
+        <table>
+            <tbody>
+                {{ calendar|safe }}
+            </tbody>
+        </table>
+ 
+    </div>   
+</div>
+
+ 
+{%endblock body%} 

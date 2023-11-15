@@ -1,0 +1,23 @@
+{%extends 'basic.html' %}
+
+{%block body%}
+
+<h1 style="text-align: center;">GP INFO</h1>
+<br>
+<div> 
+    <form method="POST" style="text-align: center;">
+        {% csrf_token %}
+        <select name="year" id="year">
+            <option selected value="" disabled>Select a year</option>
+            {% for year in years %}
+                <option value="{{ year }}">{{ year }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <br>
+        <button>Search</button>
+    </form> 
+</div>
+
+ 
+{%endblock body%} 

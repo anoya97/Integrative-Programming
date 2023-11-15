@@ -1,0 +1,79 @@
+{%extends 'basic.html' %}
+
+{%block body%}
+{% if errMsg %}
+    <h1 style="color: red; "><b>ERROR: {{ errMsg }} </b></h1>
+    <br>
+    <form action="/gpinfo/{{ ano }}/" method="get" style="text-align: center">
+        <button style="color: black; background-color: rgb(184, 184, 184); border-radius:35px; border-width: 3px; padding-left:5px; padding-right:5px" type="submit">GO BACK!</button>
+    </form>
+    <br> 
+    <br>
+    <div style="text-align: center;">
+    <img src="/static/media/MV.gif" width="900" height="600">
+    </div>
+{% else %}
+<h1 style="text-align: center;">GP INFO</h1>
+<form method="POST">
+    {% csrf_token %}
+    <button style="color: black; background-color: #FF1801; border-radius:35px; border-width: 3px; padding-left:5px; padding-right:5px" type="submit"><b>Select other Year</b></button>
+</form>
+<br>
+<div> 
+    <form method="POST" style="text-align: center;">
+        {% csrf_token %}
+        <select name="gptag" id="gptag" required>
+            <option selected value="" disabled>Select a Grand Prix</option>
+            {% for gp in gptag %}
+                <option value="{{ gp }}">{{ gp }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <br>
+        <button>Search</button>
+    </form>
+    <br>
+    <br>
+    <details>
+    <summary><h2>GP Information Details</h2></summary>
+    <div>
+        <p id="circuit" style="text-align:justify;"> • <b>Circuit:</b> {{ gpname }} </p>
+        <p id="date" style="text-align:justify;"> • <b>Date:</b> {{ date }} </p>
+        <p id="humidity" style="text-align:justify;"> • <b>Humidity:</b> {{ humidity }} </p>
+        {% if  rain_time %}
+        <p id="rain_time" style="text-align:justify;"> • <b>Rain Time:</b> {{ rain_time }} </p>
+        {% endif %}
+        <p id="trackTemp" style="text-align:justify;"> • <b>Track Temperature:</b> {{ trackTemp }} °C </p>
+        <p id="yellow_time" style="text-align:justify;"> • <b>Yellow flag Time:</b> {{ yellow }} </p>
+        <p id="red_time" style="text-align:justify;"> • <b>Red flag Time:</b> {{ red }} </p>
+        <p id="scd_time" style="text-align:justify;"> • <b>Safety Car Time:</b> {{ scd }} </p>  
+        <p id="vscd_time" style="text-align:justify;"> • <b>Virtual Safety Car Time:</b> {{ vscd }} </p>
+    </div>
+    </details> 
+    <br>
+    <br>
+    <table>
+        <tbody>
+            {{ result|safe }}
+        </tbody>
+    </table>
+    <br>
+    <br>
+    {% if gpname %}
+    <br>
+    <form method="POST" style="text-align: center;">
+        {% csrf_token %}
+        <select name="drivers" id="drivers">
+            <option selected value="" disabled>Select Driver</option>
+            {% for driver in drivers %}
+                <option value="{{ driver }}">{{ driver }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <br>
+        <button>Search</button>
+    </form>
+    {% endif %}
+</div>
+{% endif %}
+{%endblock body%} 

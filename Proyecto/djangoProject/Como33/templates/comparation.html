@@ -1,0 +1,36 @@
+{%extends 'basic.html' %}
+
+{%block body%}
+{% if errMsg %}
+    <h1 style="color: red; "><b>ERROR: {{ errMsg }} </b></h1>
+    <br>
+    <form action="{% url 'comparation' %}" method="get" style="text-align: center">
+        <button style="color: black; background-color: rgb(184, 184, 184); border-radius:35px; border-width: 3px; padding-left:5px; padding-right:5px" type="submit">GO BACK!</button>
+    </form>
+    <br>
+    <br>
+    <div style="text-align: center;">
+    <img src="/static/media/MV.gif" width="900" height="600">
+    </div>
+{% else %}
+<h1 style="text-align: center;">COMPARATION BETWEEN DRIVERS</h1>
+<br>
+<div> 
+    <form method="POST" style="text-align: center;">
+        {% csrf_token %}
+        <select name="comp_year" id="comp_year" required>
+            <option selected value="" disabled>Select year</option>
+            {% for year in comp_year %}
+                <option value="{{ year }}">{{ year }}</option>
+            {% endfor %}
+        </select> 
+        <br> 
+        <br>
+        <input id="boton" type="submit" value="Submit">
+        <br>
+        <br>
+    </form>
+</div>
+{% endif %}
+ 
+{%endblock body%} 

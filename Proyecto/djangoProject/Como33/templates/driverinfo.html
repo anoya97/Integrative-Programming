@@ -1,0 +1,71 @@
+{%extends 'basic.html' %}
+
+{%block body%}
+{% if errMsg %}
+    <h1 style="color: red; "><b>ERROR: {{ errMsg }} </b></h1>
+    <br>
+    <form action="/gpinfo/{{ ano }}/{{ circuit }}/" method="get" style="text-align: center">
+        <button style="color: black; background-color: rgb(184, 184, 184); border-radius:35px; border-width: 3px; padding-left:5px; padding-right:5px" type="submit">GO BACK!</button>
+    </form>
+    <br>
+    <br>
+    <div style="text-align: center;">
+    <img src="/static/media/MV.gif" width="900" height="600">
+    </div>
+{% else %}
+<h1 style="text-align: center;">DRIVER INFO</h1>
+<form method="POST">
+    {% csrf_token %}
+    <button style="color: black; background-color: #FF1801; border-radius:35px; border-width: 3px; padding-left:5px; padding-right:5px" type="submit"><b>Go Back!</b></button>
+</form>
+<div id="Fotos">
+{% if image %}
+<img class="imgRedonda" id="image" src="{{ image }}"  width="150" height="150">
+{% else %}
+<img class="imgRedonda" id="image" src="/static/media/User.png"  width="150" height="150">
+{% endif %}
+</div>
+<br>
+  <details>
+    <summary><h2>Fastest Lap and Speed</h2></summary>
+    <div>
+      <p id="team" style="text-align:justify;"> • <b>Team: </b> {{ team }} </p>
+      <p id="fastest" style="text-align:justify;"> • <b>Fastest Lap: </b> {{ fastest }} </p> 
+      <p id="speeds1" style="text-align:justify;"> • <b>Average speed first sector: </b> {{ speeds1 }} Km/h</p>
+      <p id="speeds2" style="text-align:justify;"> • <b>Average speed second sector: </b> {{ speeds2 }} Km/h</p>
+      <p id="speedFL" style="text-align:justify;"> • <b>Average speed longest line: </b> {{ speedFL }} Km/h</p>
+      <p id="speedST" style="text-align:justify;"> • <b>Average speed finish line: </b> {{ speedST }} Km/h</p> 
+    </div>
+    </details>
+    <details>
+    <summary><h2>Positions</h2></summary>
+    <div>
+      <p id="positions" style="text-align:justify;"> • <b>Positions: </b>
+        {% for position in positions %}
+            {{ position }}
+        {% endfor %} 
+      </p>
+      <p id="max_position" style="text-align:justify;"> • <b>Max Position: </b> {{ max_position }} </p> 
+      <p id="min_position" style="text-align:justify;"> • <b>Min Position: </b> {{ min_position }} </p>
+      <p id="finish_position" style="text-align:justify;"> • <b>Finish Position: </b> {{ finish_position }} </p>  
+    </details>
+    <details>
+    <summary><h2>Telemetry</h2></summary>
+    <div>
+      <p id="speed_avg" style="text-align:justify;"> • <b>Speed AVG: </b> {{ speed_avg }} Km/h</p>
+      <p id="rpm_mean" style="text-align:justify;"> • <b>RPM Mean: </b> {{ rpm_mean }} RPM</p>     
+      <p id="throttle_mean" style="text-align:justify;"> • <b>Throttle Mean:</b> {{ throttle_mean }} %</p> 
+    </details>
+   <details>
+    <summary><h2>Tyre Changes</h2></summary>
+    <div>
+      <table>
+        <tbody>
+            {{ tyreChanges|safe }}
+        </tbody>
+        </table>
+    </details> 
+ 
+
+{% endif %}
+{%endblock body%} 

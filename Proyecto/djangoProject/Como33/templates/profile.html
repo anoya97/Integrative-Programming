@@ -1,0 +1,24 @@
+{%extends 'basic.html' %}
+
+{%block body%}
+
+<h1 style="text-align: center;"><b>USER PROFILE</b></h1>
+<div id="Fotos">
+    <img src="/static/media/User.png" class="imgRedonda">
+</div>    
+<br>
+<h2 style="text-align: center;">{{ username }}</h2>
+<div id="Fotos">
+    <img src="/static/media/AM2.png">
+</div>
+<div>
+    <br>
+    <br>
+   <form method="POST" style="text-align: center;">
+    {% csrf_token %}
+    <button style="width: 300px; height: 35px; color: black; background-color: rgb(184, 184, 184); border-radius: 35px; border-width: 3px; padding-left: 5px; padding-right: 5px;" type="submit" id="submit">LogOut</button>
+    </form>
+</div>
+
+ 
+{%endblock body%} 

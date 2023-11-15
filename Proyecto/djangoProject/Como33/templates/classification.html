@@ -1,0 +1,44 @@
+{%extends 'basic.html' %}
+
+{%block body%}
+{% if errMsg %}
+    <h1 style="color: red; "><b>ERROR: {{ errMsg }} </b></h1>
+    <br>
+    <form action="{% url 'classification' %}" method="get" style="text-align: center">
+        <button style="color: black; background-color: rgb(184, 184, 184); border-radius:35px; border-width: 3px; padding-left:5px; padding-right:5px" type="submit">GO BACK!</button>
+    </form>
+    <br>
+    <br>
+    <div style="text-align: center;">
+    <img src="/static/media/MV.gif" width="900" height="600">
+    </div>
+{% else %}
+<h1 style="text-align: center;">CLASSIFICATION</h1>
+<br>
+<div> 
+    <form method="POST" style="text-align: center;">
+        {% csrf_token %}
+        <select name="year" id="year">
+            <option selected value="" disabled>Selecciona el año</option>
+            {% for year in years %}
+                <option value="{{ year }}">{{ year }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <br>
+        <button>Buscar</button>
+    </form>
+    <br>
+    <br> 
+    <div>
+
+        <table>
+            <tbody>
+                {{ classification|safe }}
+            </tbody>
+        </table>
+ 
+    </div>   
+</div>
+{% endif %}
+{%endblock body%} 

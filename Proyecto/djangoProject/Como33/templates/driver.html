@@ -1,0 +1,54 @@
+{%extends 'basic.html' %}
+<meta charset="UTF-8">
+{%block body%}
+{% if errMsg %}
+    <h1 style="color: red; "><b>ERROR: {{ errMsg }} </b></h1>
+    <br>
+    <form action="{% url 'driver' %}" method="get" style="text-align: center">
+        <button style="color: black; background-color: rgb(184, 184, 184); border-radius:35px; border-width: 3px; padding-left:5px; padding-right:5px" type="submit">GO BACK!</button>
+    </form>
+    <br>
+    <br>
+    <div style="text-align: center;">
+    <img src="/static/media/MV.gif" width="900" height="600">
+    </div>
+{% else %}
+<h1>INFORMATION ABOUT ACTUAL DRIVERS</h1>
+<br>
+<div align="center"> 
+    <form method="POST" style="text-align: center;">
+        {% csrf_token %}
+        <select name="Driver" id="Driver" required>
+            <option selected value="" disabled>Select the driver</option>
+            {% for Driver in Drivers %}
+                <option value="{{ Driver }}" >{{ Driver }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <br>
+        <button type="submit">Search</button>
+        <br>
+        <br>
+    </form>
+    {% if Imagen%}
+    <img id="driver-image" src="{{ Imagen }}"  width="150" height="150">
+    {% endif %}
+        <br>
+        <br>
+    {% if Summary%}
+        <p id="driver-summary" style="text-align:justify;"> {{ Summary }} </p>
+    {% endif %}
+    <br>
+    <br>
+    {% if Video%}
+    <div class="video-container">
+        <iframe id="driver-video" width="530" height="435" src="{{Video}}"> </iframe>
+    </div>
+    {% else %}
+        <p>No se encontro ningun video</p>
+    {% endif %}
+    
+</div>
+{% endif %}
+
+{% endblock %}
